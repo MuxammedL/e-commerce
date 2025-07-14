@@ -30,7 +30,7 @@ NestJS offers scalable architecture with **TypeScript** support, blending **OOP*
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/nestjs-ecommerce-backend.git
+git clone https://github.com/MuxammedL/e-commerce
 
 # Navigate into the project folder
 cd nestjs-ecommerce-backend
