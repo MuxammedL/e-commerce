@@ -37,7 +37,7 @@ cd nestjs-ecommerce-backend
 
 # Install dependencies
 npm install
-
+```
 ## Support
 
 If you find this project useful, please consider giving it a ⭐️ on GitHub and sharing it with others.
