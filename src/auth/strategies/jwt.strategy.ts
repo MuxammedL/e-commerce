@@ -15,12 +15,12 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       secretOrKey: configService.get<string>("JWT_SECRET_KEY")!,
     });
   }
-  validate(payload: JwtPayload) {
-    const user = this.usersService.findOne(payload.sub);
+  async validate(payload: JwtPayload) {
+    const user = await this.usersService.findById(payload.sub);
     return {
       id: payload.sub,
       email: payload.email,
-    //   name: user.name,
+      name: user?.name ?? " ",
     };
   }
 }

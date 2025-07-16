@@ -5,24 +5,27 @@ import {
   Patch,
   Param,
   Delete,
+  ParseIntPipe,
   UseGuards,
 } from "@nestjs/common";
 import { UsersService } from "./users.service";
+import { User } from "./entities/user.entity";
+import { UserExistsPipe } from "src/pipes/userExistsPipe.pipe";
 import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
 
+@UseGuards(JwtAuthGuard)
 @Controller("users")
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @UseGuards(JwtAuthGuard)
   @Get()
-  findAll() {
-    return this.usersService.findAll();
+  async findAll(): Promise<User[]> {
+    return await this.usersService.findAll();
   }
 
   @Get(":id")
-  findOne(@Param("id") id: string) {
-    return this.usersService.findOne(+id);
+  findOne(@Param("id", ParseIntPipe, UserExistsPipe) id: number) {
+    return this.usersService.findById(id);
   }
 
   @Patch(":id")
