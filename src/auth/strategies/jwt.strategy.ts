@@ -5,6 +5,7 @@ import { ExtractJwt, Strategy } from "passport-jwt";
 import { Roles } from "src/enum/common/user-toles";
 import { UsersService } from "src/users/users.service";
 import { Timestamp } from "typeorm";
+
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(

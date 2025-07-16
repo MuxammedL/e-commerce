@@ -1,12 +1,14 @@
 import { Transform } from "class-transformer";
 import {
   IsEmail,
+  IsEnum,
   IsNotEmpty,
   IsString,
   Matches,
   MaxLength,
   MinLength,
 } from "class-validator";
+import { Roles } from "src/enum/common/user-toles";
 
 export class CreateUserDto {
   @IsNotEmpty({ message: "Name can not be null" })
@@ -28,4 +30,10 @@ export class CreateUserDto {
       "Password too weak. Must include upper, lower, number and special char",
   })
   password: string;
+
+  @IsEnum(Roles, {
+    each: true,
+    message: "Each role must be either 'user' or 'admin'",
+  })
+  roles: Roles[];
 }

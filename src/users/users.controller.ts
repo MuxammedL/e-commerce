@@ -1,20 +1,21 @@
 import {
   Controller,
   Get,
-  Body,
   Patch,
   Param,
   Delete,
   ParseIntPipe,
   UseGuards,
-  Request,
 } from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { User } from "./entities/user.entity";
 import { UserExistsPipe } from "src/pipes/userExistsPipe.pipe";
 import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
+import { Roles } from "src/decorators/roles.decorator";
+import { RolesGuard } from "src/auth/guards/roles.guard";
 
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, RolesGuard)
+@Roles("admin")
 @Controller("users")
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
