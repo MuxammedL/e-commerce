@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { PassportStrategy } from "@nestjs/passport";
 import { ExtractJwt, Strategy } from "passport-jwt";
-import { Roles } from "src/enum/common/user-toles";
+import { ROLES } from "src/enum/common/user-roles.enum";
 import { UsersService } from "src/users/users.service";
 import { Timestamp } from "typeorm";
 
@@ -37,5 +37,5 @@ interface JwtPayload {
   name: string;
   createdAt: Timestamp;
   updatedAt: Timestamp;
-  roles: Roles[];
+  roles: ROLES[];
 }

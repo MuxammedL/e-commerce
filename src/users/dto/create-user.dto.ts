@@ -8,7 +8,7 @@ import {
   MaxLength,
   MinLength,
 } from "class-validator";
-import { Roles } from "src/enum/common/user-toles";
+import { ROLES } from "src/enum/common/user-roles.enum";
 
 export class CreateUserDto {
   @IsNotEmpty({ message: "Name can not be null" })
@@ -31,9 +31,9 @@ export class CreateUserDto {
   })
   password: string;
 
-  @IsEnum(Roles, {
+  @IsEnum(ROLES, {
     each: true,
     message: "Each role must be either 'user' or 'admin'",
   })
-  roles: Roles[];
+  roles: ROLES[];
 }
